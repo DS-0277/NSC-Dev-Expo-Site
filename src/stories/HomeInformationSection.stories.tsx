@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeInformationSection from './HomeInformationSection';
+import HomeInformationSection from '../components/HomeInformationSection';
 
 export default {
     title: 'HomeInformationSection',
