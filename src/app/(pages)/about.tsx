@@ -1,9 +1,17 @@
-import { View, Text } from 'react-native';
+import { ScrollView, Text, StyleSheet } from "react-native";
 
 export default function AboutPage() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text>Welcome to the about Page!</Text>
-    </View>
+    </ScrollView>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  }
+});

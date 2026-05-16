@@ -1,7 +1,30 @@
 import { StyleSheet, View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-export default function IndustryStats () {
+export interface IndustryStatItem {
+    value: string;
+    description: string;
+}
+
+interface IndustryStatsProps {
+    stats: IndustryStatItem[];
+}
+
+function renderStatValue(value: string) {
+    const lastChar = value[value.length - 1];
+    if (lastChar === '%' || lastChar === '+') {
+        return (
+            <Text style={styles.topText}>
+                {value.slice(0, -1)}
+                <Text style={styles.specialCharacter}>{lastChar}</Text>
+            </Text>
+        );
+    }
+
+    return <Text style={styles.topText}>{value}</Text>;
+}
+
+export default function IndustryStats ({ stats }: IndustryStatsProps) {
     return (
         <View style={styles.componentContainer}>
             <LinearGradient style={styles.gradientContainer}
@@ -12,22 +35,12 @@ export default function IndustryStats () {
                         <Text style = {styles.bannerText}>Prepare for a high-demand field.</Text>
                     </View>
                     <View style = {styles.bottomContainer}>
-                        <View style = {styles.statsContainer}>
-                            <Text style={styles.topText}>80
-                                <Text style={styles.specialCharacter}>%</Text>
-                            </Text>
-                            <Text style={styles.bottomText}>of students find gainful employment</Text>
-                        </View>
-                        <View style = {styles.statsContainer}>
-                            <Text style={styles.topText}>12</Text>
-                            <Text style={styles.bottomText}>students on average per class for more individualized attention</Text>
-                        </View>
-                        <View style = {styles.statsContainer}>
-                            <Text style={styles.topText}>100
-                                <Text style={styles.specialCharacter}>+</Text>
-                            </Text>
-                            <Text style={styles.bottomText}>students placed within industry</Text>
-                        </View>
+                        {stats.map((stat) => (
+                            <View style={styles.statsContainer} key={`${stat.value}-${stat.description}`}>
+                                {renderStatValue(stat.value)}
+                                <Text style={styles.bottomText}>{stat.description}</Text>
+                            </View>
+                        ))}
                     </View>
             </LinearGradient>
 
