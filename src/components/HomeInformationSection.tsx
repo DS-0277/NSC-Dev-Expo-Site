@@ -1,11 +1,17 @@
-import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
+
+type HomeInformationSectionProps = {
+    title?: string;
+    subtitle?: string;
+    description?: string;
+};
 
 function HomeInformationSection({
     title = "Do you need IT help?",
     subtitle = "We can help you and you can help us.",
     description = "We have budding IT students, eager to learn and build real world development skills. And you are an organization who needs IT development to improve and expand your org."
-}) {
+}: HomeInformationSectionProps) {
     return (
         <View style={styles.container}>
             <View style={styles.card}>

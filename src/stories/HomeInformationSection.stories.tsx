@@ -1,12 +1,17 @@
-import React from 'react';
 import HomeInformationSection from '../components/HomeInformationSection';
+import type { Meta, StoryObj } from '@storybook/react';
 
-export default {
-    title: 'HomeInformationSection',
-    component: HomeInformationSection
-};
 
-export const Default = {
+const meta = {
+    title: 'components/HomeInformationSection',
+    component: HomeInformationSection,
+} satisfies Meta<typeof HomeInformationSection>;
+
+export default meta;
+
+type Story = StoryObj<typeof HomeInformationSection>;
+
+export const Default: Story = {
     args: {
         title: "Do you need IT help?",
         subtitle: "We can help you and you can help us.",
